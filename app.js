@@ -110,11 +110,11 @@ function buildQuestion() { //NEXT QUESTION
         vals[0] = Math.ceil(Math.random() * (game.maxValue)); // 1 TO MAX VALUE
         let tempMax = game.maxValue + 1;
         game.oVals.sort(() => { return 0.5 - Math.random() }); //ARRAY SORT OF OPERATORS
-        if (game.oVals[0] == 3) {
+        if (game.oVals[0] == 3) { // FOR HANDLING SUBTRACTION 
             tempMax = vals[0];
         }
-        vals[1] = Math.floor(Math.random() * tempMax);
-        if (game.oVals[0] == 0) {
+        vals[1] = Math.floor(Math.random() * tempMax); // using tempmax for handling non-negative vals from subtraction
+        if (game.oVals[0] == 0) { // FOR HANDLING MULTIPLICATION
             if (vals[1] == 0) { vals[1] = 1; }
             if (vals[0] == 0) { vals[0] = 1; }
         }
@@ -122,11 +122,11 @@ function buildQuestion() { //NEXT QUESTION
             if (vals[0] == 0) { vals[0] = 1; }
             let temp = vals[0] * vals[1];
             vals.unshift(temp); //append ate firs ;arr[0]
-        } 
-        else {
-            vals[2] = eval(vals[0] + opts[game.oVals[0]] + vals[1]);
         }
-        vals[3] = opts[game.oVals[0]];
+        else {
+            vals[2] = eval(vals[0] + opts[game.oVals[0]] + vals[1]); //NORMAL OPERATORS; CALCULATING RESULT
+        }
+        vals[3] = opts[game.oVals[0]]; //FIRST RANDOM OPERATOR 
         let hiddenVal;
         if (game.hiddenVal != 3) { //randomization
             hiddenVal = game.hiddenVal;
@@ -139,13 +139,15 @@ function buildQuestion() { //NEXT QUESTION
             if (hiddenVal == i) {
                 game.correct = vals[i];
                 output.append(answer);
-            } else {
-                maker(vals[i], 'box');
+            } 
+            else {
+                maker(vals[i], 'box'); //BOX FOR NUMBER VALUE
             }
+
             if (i == 0) {
                 console.log(vals[3]);
                 let tempSign = vals[3] == '*' ? '&times;' : vals[3];
-                maker(tempSign, 'boxSign');
+                maker(tempSign, 'boxSign'); //BOX SIGN FOR OPERATOR AND EQUAL SYMBOL
             }
             if (i == 1) {
                 maker('=', 'boxSign');
