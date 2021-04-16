@@ -25,25 +25,25 @@ const player = { correct: 0, incorrect: 0 };
 btn.addEventListener('click', btnCheck);
 btn1.addEventListener('click', buildQuestion);
 
-answer.addEventListener('keyup', (e) => {
+answer.addEventListener('keyup', (e) => { //Getting the key typed during input
     console.log(e.code);
     console.log(answer.value.length);
-    if (answer.value.length > 0) {
+    if (answer.value.length > 0) { //displaying the check button after input taken
         btn.style.display = 'block';
         btn.textContent = 'check';
         game.inplay = true;
     }
-    if (e.code == 'Enter') {
+    if (e.code == 'Enter' || e.code == 'NumpadEnter') { //clicking check button on enter key
         game.inplay = true;
         btnCheck();
     }
 })
 
 
-function btnCheck() {
-    btn.style.display = 'none';
+function btnCheck() { //triggered after check is clicked
+    btn.style.display = 'none'; //disabling the check button
     if (game.inplay) {
-        if (answer.value == game.correct) {
+        if (answer.value == game.correct) { //checking the inputted value with correct value from build question
             message.innerHTML = 'Correct<br>Answer is ' + game.correct;
             player.correct++;
         } else {
@@ -51,7 +51,7 @@ function btnCheck() {
             player.incorrect++;
         }
 
-        answer.disabled = true;
+        answer.disabled = true; //enabling the next question button
         nextQuestion();
     } else {
         //start Game
@@ -67,23 +67,14 @@ function nextQuestion() {
 }
 
 
-function scoreBoard() {
+function scoreBoard() { //Obtaining values from game object for scoreboard
     message.innerHTML = `${game.curQue} of ${game.questions} Questions<br>`;
     message.innerHTML += `Correct : (${player.correct}) || Incorrect: (${player.incorrect})`;
 }
 
-function getValues() {
+function getValues() { //Takinginitial inputs from home page to initialise the game object
     game.maxValue = Number(document.querySelector('#maxVal').value);
     game.questions = document.querySelector('#numQuestions').value;
-    // let temp = document.querySelector('#selOpt');
-    // let tempArr = [];
-    // for (let i = 0; i < temp.options.length; i++) {
-    //     if (temp.options[i].selected) {
-    //         tempArr.push(i);
-    //     };
-    // }
-    // game.oVals = tempArr;
-    // console.log(game);
     let temparr = []
     let d = document.getElementsByClassName('op')
     for (var checkbox of d) {
@@ -121,7 +112,7 @@ function buildQuestion() { //NEXT QUESTION
         if (game.oVals[0] == 1) { //FOR HANDLING DIVISION {producing whole numbers}
             if (vals[0] == 0) { vals[0] = 1; }
             let temp = vals[0] * vals[1];
-            vals.unshift(temp); //append ate firs ;arr[0]
+            vals.unshift(temp); //append at first ;arr[0]
         }
         else {
             vals[2] = eval(vals[0] + opts[game.oVals[0]] + vals[1]); //NORMAL OPERATORS; CALCULATING RESULT
@@ -139,7 +130,7 @@ function buildQuestion() { //NEXT QUESTION
             if (hiddenVal == i) {
                 game.correct = vals[i];
                 output.append(answer);
-            } 
+            }
             else {
                 maker(vals[i], 'box'); //BOX FOR NUMBER VALUE
             }
@@ -154,8 +145,6 @@ function buildQuestion() { //NEXT QUESTION
             }
         }
         answer.focus();
-        //vals[hiddenVal] = '__';
-        //output.innerHTML = `${} ${vals[3]} ${vals[1]} = ${vals[2]} `;
     }
     else {
 
