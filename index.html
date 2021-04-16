@@ -6,24 +6,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>
+        function showAlert() {
+          alert ("ENTER IN THE RESPECTIVE TEXT FIELD ONLY! ");
+        }
+        </script>
 </head>
 
-<body>
+<body onclick="showAlert()">
     <div class="container">
         <div class="gameOptions">
             <p> Max number value : <input type="number" value="10" id="maxVal"></p>
             <p> Number of Questions : <input type="number" value="10" id="numQuestions"></p>
             <p> Select Operators : </p>
-            <!-- <select id="selOpt" multiple>
-                <option value="0" selected>&times;</option>
-                <option value="1" selected>/</option>
-                <option value="2" selected>+</option>
-                <option value="3" selected>-</option>
-            </select> -->
-            <div class="ck-button"><label><input type="checkbox" value="0" class='op' checked><span>&times;</span></label></div>
-            <div class="ck-button"><label><input type="checkbox" value="1" class='op'><span>/</span></label></div>
-            <div class="ck-button"><label><input type="checkbox" value="2" class='op' checked><span>+</span></label></div>
-            <div class="ck-button"><label><input type="checkbox" value="3" class='op'><span>-</span></label></div>
+        
+            <div class="ck-button"><label><input type="checkbox" value="0" class='op' checked
+                        onClick="message1();"><span>&times;</span></label></div>
+            <div class="ck-button"><label><input type="checkbox" value="1" class='op'
+                        onClick="message2();"><span>/</span></label></div>
+            <div class="ck-button"><label><input type="checkbox" value="2" class='op' checked
+                        onClick="message3();"><span>+</span></label></div>
+            <div class="ck-button"><label><input type="checkbox" value="3" class='op'
+                        onClick="message4();"><span>-</span></label></div>
             <br><br>
         </div>
         <div class="game"></div>

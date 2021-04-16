@@ -39,6 +39,23 @@ answer.addEventListener('keyup', (e) => { //Getting the key typed during input
     }
 })
 
+$("*").click(function(){
+    alert("The paragraph was clicked.");
+  });
+
+function message1(){
+    alert("MULTIPLICATION SELECTED!");
+}
+function message2(){
+    alert("DIVISION SELECTED!");
+}
+function message3(){
+    alert("ADDITION SELECTED!");
+}
+function message4(){
+    alert("SUBTRACTION SELECTED!");
+}
+
 
 function btnCheck() { //triggered after check is clicked
     btn.style.display = 'none'; //disabling the check button
@@ -75,6 +92,7 @@ function scoreBoard() { //Obtaining values from game object for scoreboard
 function getValues() { //Takinginitial inputs from home page to initialise the game object
     game.maxValue = Number(document.querySelector('#maxVal').value);
     game.questions = document.querySelector('#numQuestions').value;
+    alert("ENTER IN THE TEXT FILED ONLY")
     let temparr = []
     let d = document.getElementsByClassName('op')
     for (var checkbox of d) {
@@ -106,6 +124,7 @@ function buildQuestion() { //NEXT QUESTION
         }
         vals[1] = Math.floor(Math.random() * tempMax); // using tempmax for handling non-negative vals from subtraction
         if (game.oVals[0] == 0) { // FOR HANDLING MULTIPLICATION
+            alert("MULTIPLICATION SELECTED!")
             if (vals[1] == 0) { vals[1] = 1; }
             if (vals[0] == 0) { vals[0] = 1; }
         }
