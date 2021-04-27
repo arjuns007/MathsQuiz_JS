@@ -14,7 +14,7 @@ answer.setAttribute('max', 999);
 answer.setAttribute('min', 0);
 output.classList.add('output');
 message.classList.add('message');
-answer.classList.add('boxAnswer'); .
+answer.classList.add('boxAnswer'); 
 gameArea.append(message);
 gameArea.append(output);
 gameArea.append(btn);
