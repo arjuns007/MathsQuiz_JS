@@ -9,12 +9,12 @@ const message = document.createElement('div');
 output.textContent = "Click the button to start the game";
 btn.textContent = "Start Game";
 btn1.textContent = "Next Question";
-answer.setAttribute('type', 'number');
+answer.setAttribute('type', 'number'); 
 answer.setAttribute('max', 999);
 answer.setAttribute('min', 0);
 output.classList.add('output');
 message.classList.add('message');
-answer.classList.add('boxAnswer');
+answer.classList.add('boxAnswer'); .
 gameArea.append(message);
 gameArea.append(output);
 gameArea.append(btn);
@@ -42,7 +42,7 @@ answer.addEventListener('keyup', (e) => { //Getting the key typed during input
 
 
 function btnCheck() { //triggered after check is clicked
-    btn.style.display = 'none'; //diabling the check button
+    btn.style.display = 'none'; //disabling the check button
     if (game.inplay) {
         if (answer.value == game.correct) { //checking the inputted value with correct value from build question
             message.innerHTML = 'Correct<br>Answer is ' + game.correct;
@@ -76,15 +76,6 @@ function scoreBoard() { //Obtaining values from game object for scoreboard
 function getValues() { //Takinginitial inputs from home page to initialise the game object
     game.maxValue = Number(document.querySelector('#maxVal').value);
     game.questions = document.querySelector('#numQuestions').value;
-    // let temp = document.querySelector('#selOpt');
-    // let tempArr = [];
-    // for (let i = 0; i < temp.options.length; i++) {
-    //     if (temp.options[i].selected) {
-    //         tempArr.push(i);
-    //     };
-    // }
-    // game.oVals = tempArr;
-    // console.log(game);
     let temparr = []
     let d = document.getElementsByClassName('op')
     for (var checkbox of d) {
@@ -122,7 +113,7 @@ function buildQuestion() { //NEXT QUESTION
         if (game.oVals[0] == 1) { //FOR HANDLING DIVISION {producing whole numbers}
             if (vals[0] == 0) { vals[0] = 1; }
             let temp = vals[0] * vals[1];
-            vals.unshift(temp); //append ate firs ;arr[0]
+            vals.unshift(temp); //append at first arr[0]
         }
         else {
             vals[2] = eval(vals[0] + opts[game.oVals[0]] + vals[1]); //NORMAL OPERATORS; CALCULATING RESULT
