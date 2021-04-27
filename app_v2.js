@@ -21,7 +21,7 @@ gameArea.append(btn1);
 //game options
 const opts = ['*', '/', '+', '-'];
 const game = { correct: '', maxValue: 10, questions: 10, oVals: [0, 1, 2, 3], curQue: 0, hiddenVal: 3, inplay: false };
-const player = { correct: 0, incorrect: 0, score: [], playerName: 'tester' };
+const player = { correct: 0, incorrect: 0, score: [], playerName: 'Arjun' };
 // event listeners
 btn.addEventListener('click', startGame);
 btn1.addEventListener('click', createCSV);
@@ -50,17 +50,17 @@ function startGame() {
     btn.style.display = 'none'; //hide start button
     gameOptions.style.display = 'none';  //hide to options inputs
 
-    player.score.length = 0;
+    player.score.length = 0; //PLAYER SCORES GETTING RE-setted
     player.correct = 0;
     player.incorrect = 0;
 
-    getValues(); //game parameters reset
+    getValues(); //game parameters reset [get values]
     buildBoard(); //create game board
 }
 
 function buildBoard() {
     output.innerHTML = '';
-    for (let i = 0; i < game.questions; i++) {
+    for (let i = 0; i < game.questions; i++) { //no of questions 
         const div = document.createElement('div');  //parent question div
         div.classList.add('question');
         div.indexVal = i;
@@ -131,13 +131,13 @@ function buildQuestions(div) {
     function checkComplete() {
         let cnt = 0;
         player.score.forEach((el) => {
-            console.log(el[4]);
+            console.log(el[4]); //true value
             if (el[4]) {
                 cnt++;
             }
         })
         if (cnt >= game.questions) {
-            console.log('Game Over');
+            alert('Game Over');
             btn.style.display = 'block';
             btn1.style.display = 'block';
             btn1.textContent = 'Download Score';
@@ -216,11 +216,11 @@ function createCSV() {
         holder += clean(el) + '\n';
     })
     file = new File([holder], filename, properties);
-    let link = document.createElement('a');
+    let link = document.createElement('a'); //a for automatic download
     let url = window.URL.createObjectURL(file);
     link.setAttribute('href', url);
     link.setAttribute('download', filename);
-    link.style.visibility = 'hidden';
+    link.style.visibility = 'hidden'; //link will be disabled on web-page
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -229,7 +229,7 @@ function createCSV() {
 function clean(row) {
     let rep = '';
     row.forEach((cell, index) => {
-        cell = cell == null ? "" : cell.toString();
+        cell = cell == null ? "" : cell.toString(); //update cell contents to string
         if (cell.search(/("|,|\n)/g) >= 0) cell = '"' + cell + '"';
         if (index > 0) rep += ",";
         rep += cell;
