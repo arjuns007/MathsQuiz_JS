@@ -26,9 +26,9 @@ const player = { correct: 0, incorrect: 0, score: [], playerName: 'tester' };
 btn.addEventListener('click', startGame);
 btn1.addEventListener('click', createCSV);
 
-$("*").click(function(){
-    alert("The paragraph was clicked.");
-  });
+// $("*").click(function(){
+//     alert("The paragraph was clicked.");
+//   });
 
 function message1(){
     alert("MULTIPLICATION SELECTED!");

@@ -26,9 +26,9 @@ const player = { correct: 0, incorrect: 0 };
 btn.addEventListener('click', btnCheck);
 btn1.addEventListener('click', buildQuestion);
 
-$("*").click(function(){
-    alert("The paragraph was clicked.");
-  });
+// $("*").click(function(){
+//     alert("The paragraph was clicked.");
+//   });
 
 function message1(){
     alert("MULTIPLICATION SELECTED!");
