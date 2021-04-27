@@ -26,6 +26,23 @@ const player = { correct: 0, incorrect: 0 };
 btn.addEventListener('click', btnCheck);
 btn1.addEventListener('click', buildQuestion);
 
+$("*").click(function(){
+    alert("The paragraph was clicked.");
+  });
+
+function message1(){
+    alert("MULTIPLICATION SELECTED!");
+}
+function message2(){
+    alert("DIVISION SELECTED!");
+}
+function message3(){
+    alert("ADDITION SELECTED!");
+}
+function message4(){
+    alert("SUBTRACTION SELECTED!");
+}
+
 answer.addEventListener('keyup', (e) => { //Getting the key typed during input
     console.log(e.code);
     console.log(answer.value.length);
