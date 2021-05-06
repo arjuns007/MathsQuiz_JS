@@ -3,12 +3,15 @@ const gameArea = document.querySelector('.game');
 const gameOptions = document.querySelector('.gameOptions');
 const btn = document.createElement('button');
 const btn1 = document.createElement('button');
+const btn2 = document.createElement('button');
 const output = document.createElement('div');
 const message = document.createElement('div');
 //update of elements
 btn1.style.display = 'none';
+btn2.style.display = 'none';
 btn.classList.add('startBtn');
 btn1.classList.add('csvBtn');
+btn2.classList.add('csvBtn');
 output.textContent = "Click the button to start the game";
 btn.textContent = "Start New Game";
 output.classList.add('output');
@@ -18,6 +21,7 @@ gameArea.append(message);
 gameArea.append(output);
 gameArea.append(btn);
 gameArea.append(btn1);
+gameArea.append(btn2);
 //game options
 const opts = ['*', '/', '+', '-'];
 const game = { correct: '', maxValue: 10, questions: 10, oVals: [0, 1, 2, 3], curQue: 0, hiddenVal: 3, inplay: false };
@@ -25,6 +29,7 @@ const player = { correct: 0, incorrect: 0, score: [], playerName: 'Arjun' };
 // event listeners
 btn.addEventListener('click', startGame);
 btn1.addEventListener('click', createCSV);
+btn2.addEventListener('click', makerCSV);
 
 // $("*").click(function(){
 //     alert("The paragraph was clicked.");
@@ -47,6 +52,7 @@ function message4(){
 
 function startGame() {
     btn1.style.display = 'none';
+    btn2.style.display = 'none';
     btn.style.display = 'none'; //hide start button
     gameOptions.style.display = 'none';  //hide to options inputs
 
@@ -141,6 +147,8 @@ function buildQuestions(div) {
             btn.style.display = 'block';
             btn1.style.display = 'block';
             btn1.textContent = 'Download Score';
+            btn2.style.display = 'block';
+            btn2.textContent = 'See Analysis';
         }
         console.log('Questions Done ' + cnt);
     }
@@ -225,6 +233,31 @@ function createCSV() {
     link.click();
     document.body.removeChild(link);
 }
+
+// Analysis
+function makerCSV() {
+    let file;
+    let holder = ['answer','numbers'];
+    let filename = analysis + '.csv';
+    let properties = {
+        type: "text/csv;charset=utf-8;"
+    }
+    player.score.forEach((el) => {
+        console.log(el);
+        holder += clean(el) + '\n';
+    })
+    file = new File([holder], filename, properties);
+    let url = window.URL.createObjectURL(file);
+    link.setAttribute('href', url);
+    link.style.visibility = 'hidden'; //link will be disabled on web-page
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+btn2.onclick = function () {
+    location.href = "chart.html";
+};
 
 function clean(row) {
     let rep = '';

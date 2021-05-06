@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+      integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+      crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+    <center>
+    <canvas id="myChart" width="500" height="500" style="margin-top:70px ;"></canvas>
+    </center>
+    <script>
+      // Load the dataset
+      d3.csv("analysis.csv").then(makeChart);
+
+      // Plot the data with Chart.js
+      function makeChart(answers) {
+        var answerLabels = answers.map(function (d) {
+          return d.answer;
+        });
+        var numberData = answers.map(function (d) {
+          return d.numbers;
+        });
+        
+
+        var chart = new Chart("myChart", {
+          type: "bar",
+          data: {
+            labels: answerLabels,
+            datasets: [
+              {
+                data: numberData,
+                //labels: countryLabels,
+                backgroundColor: [
+                    "#f38b4a",
+                    "#56d798",
+                ],
+              }
+            ],
+            
+            },options: {
+                responsive: false,
+                legend: {
+                    display: false
+                 },
+                scales: {
+                    yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                        }]
+                    }
+                }
+        });
+      }
+    </script>
+</body>
+</html>
